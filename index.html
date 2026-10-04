@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Botica Caseira Esquecida - O Segredo de Kauanã</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-accent: #00d26a;
+            --glass-bg: rgba(15, 30, 20, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-light: #e2e8f0;
+            --text-dark: #1a202c;
+            --amazon-yellow: #ffa41c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-light);
+            background-color: #050a07;
+            overflow-x: hidden;
+            background-image: url('./bg_amazonia.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* Top Banner */
+        .top-banner {
+            background: linear-gradient(90deg, #d32f2f, #b71c1c);
+            text-align: center;
+            padding: 1rem;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 10;
+        }
+        .top-banner h1 { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0; color: #fff; padding: 0 10px; }
+        .top-banner h2 { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 500; margin-top: 5px; color: #ffeb3b; }
+
+        /* Hero */
+        .hero { padding: 3rem 2rem; position: relative; }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 24px;
+            padding: 3rem;
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+        }
+        .hero-text { flex: 1.2; }
+        .hero-text h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #fff; }
+        .hero-text h1 span { color: var(--primary-accent); font-style: italic; }
+        .hero-text p { font-size: 1.1rem; line-height: 1.6; color: #cbd5e1; margin-bottom: 1.5rem; font-weight: 300; }
+        
+        .hero-image { flex: 1; }
+        .hero-image img { width: 100%; border-radius: 16px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+
+        /* Compact Badges */
+        .meta-safe-section {
+            margin: 1.5rem 0;
+            background: rgba(0,0,0,0.4);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .meta-safe-section h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 0.2rem;
+        }
+        .meta-safe-section .subtitle {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .badge {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: #e2e8f0;
+            white-space: nowrap;
+        }
+
+        /* CTA */
+        .cta-container {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .cta-price-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .price-row { display: flex; align-items: baseline; gap: 10px; }
+        .price { font-size: 2.5rem; font-weight: 800; color: #fff; line-height: 1; }
+        .old-price { text-decoration: line-through; color: #94a3b8; font-size: 1.2rem; }
+        .shipping { font-size: 1rem; color: #00d26a; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+        
+        .cta-button {
+            background: #25D366;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: fit-content;
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+        }
+        .cta-button:hover { transform: scale(1.02); box-shadow: 0 15px 25px rgba(37, 211, 102, 0.4); }
+
+        /* Marquee */
+        .marquee-container {
+            background: #ffaa00;
+            color: #000;
+            font-weight: 800;
+            padding: 15px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Features */
+        .features-wrapper { padding: 4rem 2rem; }
+        .feature-row { max-width: 1100px; margin: 0 auto 3rem; display: flex; align-items: center; gap: 4rem; border-radius: 24px; padding: 2.5rem; }
+        .feature-row:nth-child(even) { flex-direction: row-reverse; }
+        .feature-text { flex: 1; }
+        .feature-text h2 { font-size: 2rem; margin-bottom: 1rem; color: #fff; }
+        .feature-text p { font-size: 1.1rem; color: #cbd5e1; }
+        .feature-image { flex: 1; }
+        .feature-image img { width: 100%; border-radius: 12px; }
+
+        /* Guarantee */
+        .guarantee-box {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed #00d26a;
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+        .guarantee-icon { font-size: 5rem; line-height: 1; }
+        .guarantee-text h3 { font-size: 1.8rem; color: #00d26a; margin-bottom: 0.5rem; }
+        .guarantee-text p { font-size: 1.05rem; color: #cbd5e1; }
+
+        /* Amazon Reviews */
+        .amazon-reviews {
+            max-width: 900px;
+            margin: 0 auto 5rem;
+            background: #fff;
+            color: #0f1111;
+            padding: 2.5rem;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .amazon-reviews h2 { font-family: Arial, sans-serif; font-size: 1.5rem; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 1.5rem; color: #0f1111; font-weight: 700; }
+        
+        .review { margin-bottom: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 1.5rem; }
+        .review:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        
+        .reviewer-profile { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        .reviewer-avatar { width: 34px; height: 34px; background: #e7e9ec; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .reviewer-avatar svg { width: 20px; height: 20px; fill: #888; }
+        .reviewer-name { font-size: 0.95rem; font-weight: 400; color: #0f1111; }
+        
+        .review-rating { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+        .stars { color: var(--amazon-yellow); font-size: 1.2rem; line-height: 1; }
+        .review-title { font-weight: 700; font-size: 0.95rem; }
+        
+        .review-date { font-size: 0.85rem; color: #565959; margin-bottom: 12px; }
+        
+        .review-text { font-size: 0.95rem; line-height: 1.4; color: #0f1111; margin-bottom: 12px; }
+        
+        .review-images { display: flex; gap: 10px; flex-wrap: wrap; }
+        .review-img { width: 110px; height: 110px; object-fit: cover; border-radius: 2px; border: 1px solid #ddd; }
+
+        /* Mobile Optimization */
+        @media (max-width: 900px) {
+            .hero { padding: 1rem 0; }
+            .hero-content { flex-direction: column; padding: 1.5rem; gap: 2rem; border-radius: 0; }
+            .hero-text h1 { font-size: 2.2rem; }
+            .top-banner h1 { font-size: 1rem; }
+            .top-banner h2 { font-size: 0.9rem; }
+            .features-wrapper { padding: 2rem 0; }
+            .mobile-book-img { display: block !important; margin: 0 auto 1.5rem !important; }
+            .feature-row, .feature-row:nth-child(even) { flex-direction: column; padding: 1.5rem; margin-bottom: 2rem; border-radius: 0; }
+            .guarantee-box { flex-direction: column; text-align: center; margin: 0 1rem 3rem; padding: 1.5rem; }
+            .amazon-reviews { padding: 1.5rem; margin: 0 1rem 3rem; }
+            .cta-button { width: 100%; font-size: 1.1rem; }
+            .price { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <h1>🚚 ATENÇÃO: ESTOQUE LIMITADO DO LIVRO FÍSICO — FRETE E ENTREGA GARANTIDOS PELOS CORREIOS</h1>
+    </div>
+
+    <!-- Hero / Narrative -->
+    <section class="hero">
+        <div class="hero-content glass">
+            <div class="hero-text">
+                <h1 style="text-transform: uppercase; font-size: 2.2rem; line-height: 1.1;">TENHA NA SUA CASA A <span>MEDICINA DA FLORESTA</span> QUE SEUS AVÓS USAVAM MUITO ANTES DE EXISTIR <span>FARMÁCIA</span></h1>
+                
+                <img src="./imagens para modificar/Translate_image_text_to_Portuguese_2K_20261004140136.jpg" alt="Capa do Livro" style="width: 100%; max-width: 280px; border-radius: 8px; margin: 1rem 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: none;" class="mobile-book-img" loading="lazy">
+
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 400; color: #cbd5e1; margin-bottom: 1.5rem; line-height: 1.5;"><strong style="color: var(--primary-accent);">250 preparos naturais</strong> de raízes e folhas medicinais para <strong style="color: var(--primary-accent);">desinchar articulações</strong>, <strong style="color: var(--primary-accent);">equilibrar a glicose</strong> e acalmar o corpo — registrados em um <strong style="color: var(--primary-accent);">Livro Físico completo entregue na sua porta</strong> por apenas R$ 37,90.</h2>
+                
+                <ul style="list-style: none; margin-bottom: 2rem; padding: 0;">
+                    <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px;">
+                        <span style="font-size: 1.2rem;">✅</span>
+                        <span style="font-size: 1.05rem; line-height: 1.4; color: #e2e8f0;">O verdadeiro <strong>resgate da saúde</strong> usado antes das pílulas e efeitos colaterais.</span>
+                    </li>
+                    <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px;">
+                        <span style="font-size: 1.2rem;">✅</span>
+                        <span style="font-size: 1.05rem; line-height: 1.4; color: #e2e8f0;"><strong>Letras grandes e fáceis de ler</strong>, perfeito para ter a receita exata sempre à mão.</span>
+                    </li>
+                    <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px;">
+                        <span style="font-size: 1.2rem;">✅</span>
+                        <span style="font-size: 1.05rem; line-height: 1.4; color: #e2e8f0;">É um <strong>livro físico</strong> que enviamos pelos correios, capa dura e mais <strong>4 brindes surpresa</strong>.</span>
+                    </li>
+                </ul>
+
+                <div class="cta-container" style="margin-bottom: 2rem;">
+                    <a href="https://wa.me/seunumerodowhatsapp" class="cta-button" style="background: #25D366; color: #ffffff; padding: 1.2rem; font-size: 1.3rem; font-weight: 800; text-align: center; border-radius: 8px; box-shadow: 0 6px 20px rgba(37,211,102,0.5); text-transform: uppercase; justify-content: center; align-items: center; gap: 10px; letter-spacing: 0.5px; display: flex;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                        <span>QUERO MEU LIVRO FÍSICO</span>
+                    </a>
+                </div>
+                
+                <div class="meta-safe-section">
+                    <h3>📖 O QUE VOCÊ ENCONTRA NO SEU LIVRO</h3>
+                    <p class="subtitle">(250 receitas naturais organizadas para o bem-estar de toda a família)</p>
+                    
+                    <img src="./imagens para modificar/22.jpg" alt="Conteúdo do Guia" style="width: 100%; border-radius: 8px; margin-bottom: 1rem; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 15px rgba(0,0,0,0.3);" loading="lazy">
+                    
+                    <div class="badges-container">
+                        <span class="badge">Sistema nervoso</span>
+                        <span class="badge">Sistema digestivo</span>
+                        <span class="badge">Sistema imunológico</span>
+                        <span class="badge">Sistema cardiovascular</span>
+                        <span class="badge">Sistema endócrino</span>
+                        <span class="badge">Problemas de pele e feridas</span>
+                        <span class="badge">Saúde musculoesquelética</span>
+                        <span class="badge">Produtos para cuidados pessoais</span>
+                        <span class="badge">Sistema reprodutivo</span>
+                        <span class="badge">Sistema urinário</span>
+                        <span class="badge">Sistema auditivo e visual</span>
+                        <span class="badge">Desintoxicação</span>
+                        <span class="badge">Sistema respiratório</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="./imagens para modificar/fotoiniciopagina.jpg" alt="A Botica do Kauanã" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            Alta Demanda! Quantidade Limitada de Livros Disponíveis – Aja Rápido! &nbsp;&bull;&nbsp; A Oferta Termina em Breve! &nbsp;&bull;&nbsp; 78% de Desconto! &nbsp;&bull;&nbsp; 3 Livros EXTRAS GRÁTIS + Coleção de Vídeos de Medicina Herbal GRÁTIS! &nbsp;&bull;&nbsp; Alta Demanda! Quantidade Limitada de Livros Disponíveis – Aja Rápido! &nbsp;&bull;&nbsp; A Oferta Termina em Breve! &nbsp;&bull;&nbsp; 78% de Desconto! &nbsp;&bull;&nbsp; 3 Livros EXTRAS GRÁTIS + Coleção de Vídeos de Medicina Herbal GRÁTIS!
+        </div>
+    </div>
+
+    <!-- Content Sections -->
+    <div class="features-wrapper">
+        <div class="feature-row glass">
+            <div class="feature-image">
+                <img src="./imagens para modificar/Translate_image_text_to_Portuguese_2K_20261004140139.jpg" alt="Páginas Internas" loading="lazy">
+            </div>
+            <div class="feature-text">
+                <h2>Identificação Visual Precisa</h2>
+                <p>O livro traz páginas ricamente ilustradas e traduzidas para o português, garantindo que você identifique com clareza cada planta, raiz e erva necessária para os preparos ensinados pelo líder curandeiro.</p>
+            </div>
+        </div>
+
+        <div class="feature-row glass">
+            <div class="feature-image">
+                <img src="./imagens para modificar/Translate_image_text_to_Portuguese_2K_20261004140143.jpg" alt="Preparo dos Elixires" loading="lazy">
+            </div>
+            <div class="feature-text">
+                <h2>Receitas de Fácil Preparo</h2>
+                <p>Aprenda a fazer elixires, tinturas e infusões no conforto da sua cozinha. O líder curandeiro adaptou as técnicas da floresta para que qualquer pessoa possa extrair o máximo das plantas medicinais em casa.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guarantee Section -->
+    <div class="guarantee-box glass">
+        <div class="guarantee-icon">🛡️</div>
+        <div class="guarantee-text">
+            <h3>Garantia Blindada de 30 Dias</h3>
+            <p>Confiamos tanto no poder da sabedoria da floresta que oferecemos 30 dias de garantia incondicional. Se você não ficar satisfeito com os resultados das receitas do Kauanã, devolvemos 100% do seu dinheiro. Sem letras miúdas.</p>
+        </div>
+    </div>
+
+    <!-- Amazon Style Reviews -->
+    <section class="amazon-reviews">
+        <h2>Avaliações de clientes</h2>
+
+        <div class="review">
+            <div class="reviewer-profile">
+                <div class="reviewer-avatar">
+                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                </div>
+                <div class="reviewer-name">D.S.</div>
+            </div>
+            <div class="review-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-title">Excelente livro, recomendo a todos!</span>
+            </div>
+            <div class="review-date">Avaliado no Brasil em 18 de Janeiro de 2026</div>
+            <div class="review-text">O livro chegou certo! Pode confiar pessoal, o material é excelente e as imagens ensinam certinho o preparo das coisas. O livro de Kauanã é elaborado em um formato muito útil e fácil de usar. Me alegra encontrar tanta informação em um só lugar. Graças a Deus e à natureza!</div>
+            <div class="review-images">
+                <img src="./imagens para modificar/comentarios (1).png" class="review-img" alt="Foto do cliente" loading="lazy">
+            </div>
+        </div>
+
+        <div class="review">
+            <div class="reviewer-profile">
+                <div class="reviewer-avatar">
+                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                </div>
+                <div class="reviewer-name">Debra</div>
+            </div>
+            <div class="review-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-title">Material impecável e fácil de encontrar o que precisa</span>
+            </div>
+            <div class="review-date">Avaliado no Brasil em 22 de Janeiro de 2026</div>
+            <div class="review-text">Me gusta porque é fácil encontrar o que você necessita. O meu também chegou e eu já comecei a usar o xarope do Curandeiro! A qualidade do material entregue é impecável. Muito obrigado!</div>
+            <div class="review-images">
+                <img src="./imagens para modificar/comentarios (2).png" class="review-img" alt="Foto do cliente" loading="lazy">
+            </div>
+        </div>
+
+        <div class="review">
+            <div class="reviewer-profile">
+                <div class="reviewer-avatar">
+                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                </div>
+                <div class="reviewer-name">Kimberly</div>
+            </div>
+            <div class="review-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-title">Não decepciona</span>
+            </div>
+            <div class="review-date">Avaliado no Brasil em 12 de Janeiro de 2026</div>
+            <div class="review-text">Os tenho todos e não me decepcionam. Recomendo todos os livros do Kauanã. Fiquei encantada com a história. A natureza tem tudo que a gente precisa, a gente é que esqueceu como usar. O livro chegou super rápido.</div>
+        </div>
+
+    </section>
+
+    <!-- Bottom CTA -->
+    <div style="text-align: center; padding: 2rem 1rem 5rem;">
+        <div class="cta-container" style="align-items: center; margin-top: 0;">
+            <div class="cta-price-info" style="align-items: center; margin-bottom: 10px;">
+                <span class="old-price">De R$ 172,68</span>
+                <div class="price-row">
+                    <span class="price">R$ 37,99</span>
+                    <span class="shipping">📦 Frete Grátis pelos Correios</span>
+                </div>
+            </div>
+            <a href="https://wa.me/seunumerodowhatsapp" class="cta-button" style="background: #25D366; color: #ffffff; padding: 1.2rem; font-size: 1.3rem; font-weight: 800; text-align: center; border-radius: 8px; box-shadow: 0 6px 20px rgba(37,211,102,0.5); text-transform: uppercase; justify-content: center; align-items: center; gap: 10px; letter-spacing: 0.5px; width: 100%; max-width: 400px; margin: 0 auto; display: flex;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                <span>QUERO MEU LIVRO FÍSICO</span>
+            </a>
+        </div>
+    </div>
+    <!-- UTM Tracking & Pixel Events Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. Capturar as UTMs da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const utms = {
+                source: urlParams.get('utm_source') || '',
+                medium: urlParams.get('utm_medium') || '',
+                campaign: urlParams.get('utm_campaign') || '',
+                content: urlParams.get('utm_content') || ''
+            };
+
+            // Você pode salvar no localStorage se quiser persistir entre diferentes páginas do mesmo domínio
+            if(utms.content) localStorage.setItem('utm_content', utms.content);
+            const persistedContent = localStorage.getItem('utm_content') || utms.content;
+
+            // 2. Modificar os links do WhatsApp para incluir os parâmetros (opcional, mas ótimo para o vendedor)
+            const ctaButtons = document.querySelectorAll('.cta-button');
+            
+            ctaButtons.forEach(button => {
+                let originalHref = button.getAttribute('href');
+                
+                if (originalHref && originalHref.includes('wa.me')) {
+                    // Prepara a mensagem automática do WhatsApp com o UTM de Conteúdo (ex: A07)
+                    let trackingString = persistedContent ? ` (Origem: ${persistedContent})` : '';
+                    let message = encodeURIComponent(`Olá, quero meu Livro Físico!${trackingString}`);
+                    
+                    let separator = originalHref.includes('?') ? '&' : '?';
+                    button.setAttribute('href', `${originalHref}${separator}text=${message}`);
+                }
+
+                // 3. Disparar Evento 'Contact' do Pixel ao clicar
+                button.addEventListener('click', function(e) {
+                    if (typeof fbq === 'function') {
+                        fbq('track', 'Contact', {
+                            content_name: 'Botão WhatsApp',
+                            utm_content: persistedContent,
+                            utm_campaign: utms.campaign,
+                            utm_source: utms.source
+                        });
+                        console.log("Pixel Contact Disparado. UTM_Content:", persistedContent);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
